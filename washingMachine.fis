@@ -1,0 +1,58 @@
+[System]
+Name='final washing machine'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=2
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Softness'
+Range=[0 10]
+NumMFs=3
+MF1='very soft':'trapmf',[0 0 0.4167 3.75]
+MF2='medium':'trimf',[0.833333333333333 5 9.16666666666667]
+MF3='hard':'trapmf',[6.25 9.583 10 10]
+
+[Input2]
+Name='Quantity'
+Range=[0 10]
+NumMFs=3
+MF1='small load':'trapmf',[0 0 0.4167 3.75]
+MF2='medium load':'trimf',[0.833333333333333 5 9.16666666666667]
+MF3='large load':'trapmf',[6.25 9.583 10 10]
+
+[Input3]
+Name='Dirtiness'
+Range=[0 10]
+NumMFs=3
+MF1='low soil':'trapmf',[0 0 0.4167 3.75]
+MF2='medium soil':'trimf',[0.833333333333333 5 9.16666666666667]
+MF3='high soil':'trapmf',[6.25 9.583 10 10]
+
+[Output1]
+Name='Washing cycle'
+Range=[0 10]
+NumMFs=4
+MF1='delicate cycle':'trapmf',[0 0 2 4]
+MF2='light cycle':'trimf',[2 4 6]
+MF3='normal cycle':'trimf',[4 6 8]
+MF4='strong cycle':'trapmf',[6 8 10 10]
+
+[Output2]
+Name='Wash time'
+Range=[-50 180]
+NumMFs=3
+MF1='short':'trapmf',[-136.2 -59.58 -40.42 36.25]
+MF2='normal':'trimf',[-30.8333333333333 65 160.833333333333]
+MF3='long':'trapmf',[93.75 170.4 180 180]
+
+[Rules]
+1 1 1, 1 1 (1) : 2
+3 3 3, 4 3 (1) : 2
+2 2 2, 3 2 (0.15) : 2
